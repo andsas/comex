@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  comex-service:
+    container_name: comex-service
+    image: wookie/comex:1.0.0
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    networks:
+      - comex-service-network
+    environment:
+      - SERVER_PORT=8000
+      - DATABASE_HOST=comex-service-db
+      - DATABASE_PORT=3306
+      - DATABASE_USER=comex
+      - DATABASE_PASSWORD=comex
+      - DATABASE_NAME=comex
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - comex-service-db
+
+  comex-service-db:
+    container_name: comex-service-db
+    image: mysql:5.7.40
+    ports:
+      - '3306:3306'
+    networks:
+      - comex-service-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=comex
+      - MYSQL_USER=comex
+      - MYSQL_PASSWORD=comex
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  comex-service-network:
+    driver: bridge
