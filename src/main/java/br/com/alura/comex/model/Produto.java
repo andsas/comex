@@ -1,5 +1,7 @@
 package br.com.alura.comex.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -30,6 +32,7 @@ public class Produto {
     @Column(name = "quantidade_estoque", nullable = false)
     private int quantidadeEstoque;
 
+    @JsonBackReference
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Categoria categoria;
 

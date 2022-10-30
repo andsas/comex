@@ -1,6 +1,7 @@
 package br.com.alura.comex.model;
 
 import br.com.alura.comex.model.enun.TipoDesconto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

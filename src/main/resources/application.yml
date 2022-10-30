@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: comex
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DATABASE_HOST}:3306/comex?useSSL=false&useTimezone=true&serverTimezone=UTC

@@ -1,6 +1,7 @@
 package br.com.alura.comex.model;
 
 import br.com.alura.comex.model.enun.StatusCategoria;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Categoria {
     @Column(nullable = false)
     private StatusCategoria status = StatusCategoria.ATIVA;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "categoria")
     private List<Produto> produtos = new ArrayList<>();
 
